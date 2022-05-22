@@ -1,0 +1,20 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.form-field {
+  .outline {
+    outline-style: initial;
+  }
+}
