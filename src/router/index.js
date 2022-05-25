@@ -3,9 +3,17 @@ import formatRoutes from "./format"
 
 let routes = {}
 formatRoutes.forEach(item => {
-  routes[item.path] = wrap({
-    asyncComponent: () => import(/* @vite-ignore */item.source)
-  })
+  if(!item.children) {
+    routes[item.path] = wrap({
+      asyncComponent: () => import(/* @vite-ignore */item.source)
+    })
+  } else {
+    item.children.forEach(childrenItem => {
+      routes[childrenItem.path] = wrap({
+        asyncComponent: () => import(/* @vite-ignore */childrenItem.source)
+      })
+    })
+  }  
 })
 
 export default routes

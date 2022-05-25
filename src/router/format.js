@@ -3,31 +3,64 @@ export default [
     name: 'home',
     path: '/',
     meta: {
-      name: '首页'
+      name: '首页',
+      icon: 'Home'
     },
     source: '../views/Home.svelte'
   },
   {
-    name: 'about',
-    path: '/about',
+    name: 'days30',
     meta: {
-      name: '关于'
+      name: '30天从0到1学Svelte',
+      icon: 'Album'
     },
-    source: '../views/About.svelte'
+    children: [
+      {
+        name: 'countDown',
+        path: '/countDown',
+        meta: {
+          name: '倒计时示例'
+        },
+        source: '../views/days30/CountDown.svelte'
+      },
+    ]
   },
   {
-    name: 'detail',
-    path: '/about/:id',
+    name: 'test',
     meta: {
-      name: '详情'
+      name: '起始测试页面',
+      icon: 'List'
     },
-    source: '../views/Detail.svelte'
+    children: [
+      {
+        name: 'about',
+        path: '/about',
+        meta: {
+          name: '关于'
+        },
+        source: '../views/test/About.svelte'
+      },
+      {
+        name: 'detail',
+        path: '/about/:id',
+        params: {
+          id: 101
+        },
+        query: {
+          order: 1
+        },
+        meta: {
+          name: '详情'
+        },
+        source: '../views/test/Detail.svelte'
+      },
+    ]
   },
   {
     name: 'notFound',
     path: '*',
     meta: {
-      name: '404'
+      name: '404',
     },
     source: '../views/NotFound.svelte'
   }
