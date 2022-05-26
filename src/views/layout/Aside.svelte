@@ -1,7 +1,10 @@
 <div class="aside w-60 h-screen bg-gray-900 overflow-auto">
   <Accordion class="w-full h-full" let:closeOtherPanels>
     {#each paths as item}
-      <AccordionSection on:panel-open={closeOtherPanels}>
+      <AccordionSection 
+        on:panel-open={closeOtherPanels} 
+        open={openSection ? item.name === openSection.name : false}
+      >
         <div slot="handle" let:toggle>
           <span on:click={toggle} class="flex flex-row text-gray-50 py-2 px-3 cursor-pointer">
             {#if item.children}
@@ -11,7 +14,12 @@
             <span class="name flex-auto truncate">{item.meta.name}</span>
             <span class="text-gray-500 float-right w-5 pt-1"><ChevronRight size={18} /></span>
             {:else}
-            <a href={handlePath(item)} use:link class="flex flex-row w-full hover:text-blue-400">
+            <a 
+              href={handlePath(item)} 
+              use:link 
+              use:active={{ path: handleActivePath(item.path), className: 'text-blue-400' }}
+              class="flex flex-row w-full hover:text-blue-400"
+            >
               <span class="icon w-6 text-blue-300 m-auto">
                 <svelte:component this={components[item.meta.icon]}  size={20} />
               </span>
@@ -24,7 +32,14 @@
         <ul>
           {#each item.children as m}
           <li class="text-gray-300 px-9 py-1">
-            <a href={handlePath(m)} use:link class="block hover:text-blue-400 truncate">{m.meta.name}</a>
+            <a 
+              href={handlePath(m)} 
+              use:link 
+              use:active={{ path: handleActivePath(m.path), className: 'text-blue-400' }}
+              class="block hover:text-blue-400 truncate"
+            >
+              {m.meta.name}
+            </a>
           </li>
           {/each}
         </ul>
@@ -35,19 +50,44 @@
 </div>
 
 <script>
+  import { onMount } from 'svelte';
   import { Accordion, AccordionSection } from 'attractions'
   import { ChevronRight, Home, List, Album } from 'tabler-icons-svelte'
+  import { link, location } from 'svelte-spa-router';
+  import active from 'svelte-spa-router/active';
+  import { parse } from 'regexparam';
   import formatPaths from '../../router/format';
-  import { link } from 'svelte-spa-router';
+
   let paths = formatPaths.filter(item => {
     return item.children || item.path.indexOf('/') !== -1;
   })
+
   // 获取App.svelte传入的name值
   export let name = ''
   console.log(name)
 
   $: components = {
     Home, List, Album
+  }
+
+  let openSection = {}
+
+  onMount(() => {
+    openSection = formatPaths.find(item => {
+      return fitOpen(item.children)
+    })
+  })
+
+  // 子路由中匹配当前浏览器访问路径
+  const fitOpen = (children) => {
+    if(!children) {
+      return false
+    } else {
+      const fitPath = children.find(m => {
+        return parse(m.path).pattern.test($location);
+      })
+      return fitPath ? true : false
+    }
   }
 
   // 处理路径
@@ -66,5 +106,15 @@
       path = path + '?' + queryArr.join('&')
     }
     return path
+  }
+
+  // 处理高亮匹配路径
+  const handleActivePath = (path) => {
+    if(path.indexOf(':') !== -1) {
+      let replacedPath = `${path}/`.replace(/:[^:|/]{0,}\//g, `*/`)
+      return replacedPath.slice(0, replacedPath.length - 1)
+    } else {
+      return path
+    }
   }
 </script>

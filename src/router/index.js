@@ -1,17 +1,14 @@
-import { wrap } from "svelte-spa-router/wrap"
 import formatRoutes from "./format"
+
+const libs = import.meta.globEager('../views/**')
 
 let routes = {}
 formatRoutes.forEach(item => {
   if(!item.children) {
-    routes[item.path] = wrap({
-      asyncComponent: () => import(/* @vite-ignore */item.source)
-    })
+    routes[item.path] = libs[item.source].default
   } else {
     item.children.forEach(childrenItem => {
-      routes[childrenItem.path] = wrap({
-        asyncComponent: () => import(/* @vite-ignore */childrenItem.source)
-      })
+      routes[childrenItem.path] = libs[childrenItem.source].default
     })
   }  
 })
