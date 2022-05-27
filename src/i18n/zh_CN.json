@@ -1,0 +1,22 @@
+{
+  "menu": {
+    "home": {
+      "title": "首页"
+    },
+    "days30": {
+      "title": "30天从0到1学Svelte"
+    },
+    "countDown": {
+      "title": "倒计时示例"
+    },
+    "test": {
+      "title": "起始测试页面"
+    },
+    "about": {
+      "title": "关于"
+    },
+    "detail": {
+      "title": "详情"
+    }
+  }
+}

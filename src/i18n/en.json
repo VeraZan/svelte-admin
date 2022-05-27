@@ -1,0 +1,22 @@
+{
+  "menu": {
+    "home": {
+      "title": "home"
+    },
+    "days30": {
+      "title": "days30"
+    },
+    "countDown": {
+      "title": "countDown"
+    },
+    "test": {
+      "title": "test"
+    },
+    "about": {
+      "title": "about"
+    },
+    "detail": {
+      "title": "detail"
+    }
+  }
+}

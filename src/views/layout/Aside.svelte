@@ -11,7 +11,7 @@
             <span class="icon w-6 text-blue-300 m-auto">
               <svelte:component this={components[item.meta.icon]}  size={20} />
             </span>
-            <span class="name flex-auto truncate">{item.meta.name}</span>
+            <span class="name flex-auto truncate">{$_('menu.'+ item.name+'.title', { default: item.meta.name })}</span>
             <span class="text-gray-500 float-right w-5 pt-1"><ChevronRight size={18} /></span>
             {:else}
             <a 
@@ -23,7 +23,7 @@
               <span class="icon w-6 text-blue-300 m-auto">
                 <svelte:component this={components[item.meta.icon]}  size={20} />
               </span>
-              <span class="name flex-auto truncate">{item.meta.name}</span>          
+              <span class="name flex-auto truncate">{$_('menu.'+ item.name+'.title', { default: item.meta.name })}</span>          
             </a>
             {/if}
           </span>
@@ -38,7 +38,7 @@
               use:active={{ path: handleActivePath(m.path), className: 'text-blue-400' }}
               class="block hover:text-blue-400 truncate"
             >
-              {m.meta.name}
+              {$_('menu.'+ m.name+'.title', { default: m.meta.name })}
             </a>
           </li>
           {/each}
@@ -51,6 +51,7 @@
 
 <script>
   import { onMount } from 'svelte';
+  import { _ } from 'svelte-i18n';
   import { Accordion, AccordionSection } from 'attractions'
   import { ChevronRight, Home, List, Album } from 'tabler-icons-svelte'
   import { link, location } from 'svelte-spa-router';

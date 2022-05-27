@@ -18,3 +18,12 @@ html, body {
     outline-style: initial;
   }
 }
+
+.notifications {
+  > .position-top-center, > .position-bottom-center {
+    max-width: 600px !important;
+    >.default-notification-style > .default-notification-style-content {
+      width: 510px !important;
+    }
+  }
+}
