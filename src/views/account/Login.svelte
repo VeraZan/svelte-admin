@@ -14,12 +14,12 @@
 </script>
 
 <div class="login-container w-full h-full flex flex-col justify-center items-center bg-gray-900">
-  <p class="text-center text-4xl text-blue-400 font-bold italic antialiased uppercase mb-4">svelte admin</p>
-  <div class="form-box w-1/4 px-6 py-8 rounded-md shadow-md bg-gradient-to-r from-white via-white to-blue-100 opacity-85">   
-    <TextField bind:value={form.userName} outline label="用户" withItem class="mb-6">
+  <p class="text-center text-4xl text-blue-400 font-bold italic antialiased uppercase mb-10">svelte admin</p>
+  <div class="form-box w-96 px-7 py-12 mb-20 rounded-md shadow-md bg-gradient-to-r from-white via-white to-blue-100 opacity-85">   
+    <TextField bind:value={form.userName} outline label="用户" withItem class="mb-8">
       <span class="item"><User size="18" /></span>
     </TextField>
-    <TextField bind:value={form.password} type="password" outline label="密码" withItem class="mb-6">
+    <TextField bind:value={form.password} type="password" outline label="密码" withItem class="mb-12">
       <span class="item"><Lock size="18" /></span>
     </TextField>
     <button 
