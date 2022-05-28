@@ -1,7 +1,7 @@
 export default [
   {
     name: 'home',
-    path: '/',
+    path: '/home',
     meta: {
       name: '首页',
       icon: 'Home'
@@ -23,6 +23,32 @@ export default [
         },
         source: '../views/days30/CountDown.svelte'
       },
+    ]
+  },
+  {
+    name: 'account',
+    meta: {
+      name: '账户管理',
+      icon: 'User'
+    },
+    children: [
+      {
+        name: 'personal',
+        path: '/personal',
+        meta: {
+          name: '个人信息'
+        },
+        source: '../views/account/Personal.svelte'
+      },
+      {
+        name: 'login',
+        path: '/',
+        meta: {
+          name: '登录',
+          hide: true
+        },
+        source: '../views/account/Login.svelte'
+      }
     ]
   },
   {
@@ -61,6 +87,7 @@ export default [
     path: '*',
     meta: {
       name: '404',
+      hide: true
     },
     source: '../views/NotFound.svelte'
   }

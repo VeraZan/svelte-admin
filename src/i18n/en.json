@@ -9,6 +9,12 @@
     "countDown": {
       "title": "countDown"
     },
+    "account": {
+      "title": "account"
+    },
+    "personal": {
+      "title": "personal"
+    },
     "test": {
       "title": "test"
     },

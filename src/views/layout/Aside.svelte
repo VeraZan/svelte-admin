@@ -31,16 +31,18 @@
         {#if item.children}
         <ul>
           {#each item.children as m}
-          <li class="text-gray-300 px-9 py-1">
-            <a 
-              href={handlePath(m)} 
-              use:link 
-              use:active={{ path: handleActivePath(m.path), className: 'text-blue-400' }}
-              class="block hover:text-blue-400 truncate"
-            >
-              {$_('menu.'+ m.name+'.title', { default: m.meta.name })}
-            </a>
-          </li>
+            {#if !m.meta.hide}
+              <li class="text-gray-300 px-9 py-1">
+                <a 
+                  href={handlePath(m)} 
+                  use:link 
+                  use:active={{ path: handleActivePath(m.path), className: 'text-blue-400' }}
+                  class="block hover:text-blue-400 truncate"
+                >
+                  {$_('menu.'+ m.name+'.title', { default: m.meta.name })}
+                </a>
+              </li>
+            {/if}        
           {/each}
         </ul>
         {/if}
@@ -53,14 +55,14 @@
   import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';
   import { Accordion, AccordionSection } from 'attractions'
-  import { ChevronRight, Home, List, Album } from 'tabler-icons-svelte'
+  import { ChevronRight, Home, List, Album, User } from 'tabler-icons-svelte'
   import { link, location } from 'svelte-spa-router';
   import active from 'svelte-spa-router/active';
   import { parse } from 'regexparam';
   import formatPaths from '../../router/format';
 
   let paths = formatPaths.filter(item => {
-    return item.children || item.path.indexOf('/') !== -1;
+    return !item.meta.hide;
   })
 
   // 获取App.svelte传入的name值
@@ -68,7 +70,7 @@
   console.log(name)
 
   $: components = {
-    Home, List, Album
+    Home, List, Album, User
   }
 
   let openSection = {}

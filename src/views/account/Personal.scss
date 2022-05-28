@@ -1,0 +1,14 @@
+.personal-container {
+  margin: 20px auto;
+  width: 80%;
+  > .form-field-fit {
+    > .description {
+      flex-basis: 150px !important;
+    }
+    > .field {
+      > .message.info {
+        display: none;
+      }
+    }
+  }
+}

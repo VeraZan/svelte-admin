@@ -13,9 +13,9 @@ html, body {
   height: 100vh;
 }
 
-.form-field {
-  .outline {
-    outline-style: initial;
+.text-field {
+  &.outline {
+    outline-style: initial !important;
   }
 }
 
@@ -25,5 +25,8 @@ html, body {
     >.default-notification-style > .default-notification-style-content {
       width: 510px !important;
     }
+  }
+  .default-notification-info {
+    background-color: #60a5fa !important;
   }
 }
