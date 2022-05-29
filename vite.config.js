@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { dependencies, devDependencies} from './package.json'
 
 export default defineConfig({
   plugins: [svelte()],
@@ -23,6 +24,20 @@ export default defineConfig({
       // 	changeOrigin: true,
       // 	rewrite: path => path.replace(/^\/api/, '')
       // }
+    }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if(id.includes('node_modules')) {
+            const name = id.toString().split('node_modules/')[1].split('/')[0].toString()
+            if(Object.keys(dependencies).includes(name) || Object.keys(devDependencies).includes(name)) {
+              return name
+            }
+          }
+        }
+      }
     }
   }
 })
