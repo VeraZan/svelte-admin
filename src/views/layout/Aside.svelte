@@ -1,4 +1,4 @@
-<div class="aside w-60 h-screen bg-gray-900 overflow-auto">
+<div class="aside w-60 h-full bg-gray-900 overflow-auto">
   <Accordion class="w-full h-full" let:closeOtherPanels>
     {#each paths as item}
       <AccordionSection 
@@ -55,7 +55,7 @@
   import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';
   import { Accordion, AccordionSection } from 'attractions'
-  import { ChevronRight, Home, List, Album, User } from 'tabler-icons-svelte'
+  import { ChevronRight, Home, List, Album, User, Components } from 'tabler-icons-svelte'
   import { link, location } from 'svelte-spa-router';
   import active from 'svelte-spa-router/active';
   import { parse } from 'regexparam';
@@ -70,7 +70,7 @@
   console.log(name)
 
   $: components = {
-    Home, List, Album, User
+    Home, List, Album, User, Components
   }
 
   let openSection = {}

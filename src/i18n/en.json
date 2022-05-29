@@ -9,6 +9,15 @@
     "countDown": {
       "title": "countDown"
     },
+    "components": {
+      "title": "components"
+    },
+    "base": {
+      "title": "base"
+    },
+    "advanced": {
+      "title": "advanced"
+    },
     "account": {
       "title": "account"
     },

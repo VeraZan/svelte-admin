@@ -9,20 +9,28 @@ export default [
     source: '../views/Home.svelte'
   },
   {
-    name: 'days30',
+    name: 'components',
     meta: {
-      name: '30天从0到1学Svelte',
-      icon: 'Album'
+      name: '组件',
+      icon: 'Components'
     },
     children: [
       {
-        name: 'countDown',
-        path: '/countDown',
+        name: 'base',
+        path: '/components/base',
         meta: {
-          name: '倒计时示例'
+          name: '基础组件'
         },
-        source: '../views/days30/CountDown.svelte'
+        source: '../views/components/Base.svelte'
       },
+      {
+        name: 'advanced',
+        path: '/components/advanced',
+        meta: {
+          name: '进阶组件'
+        },
+        source: '../views/components/Advanced.svelte'
+      }
     ]
   },
   {
@@ -52,9 +60,26 @@ export default [
     ]
   },
   {
+    name: 'days30',
+    meta: {
+      name: '30天从0到1学Svelte',
+      icon: 'Album'
+    },
+    children: [
+      {
+        name: 'countDown',
+        path: '/countDown',
+        meta: {
+          name: '倒计时示例'
+        },
+        source: '../views/days30/CountDown.svelte'
+      },
+    ]
+  },
+  {
     name: 'test',
     meta: {
-      name: '起始测试页面',
+      name: '测试页面',
       icon: 'List'
     },
     children: [

@@ -40,7 +40,7 @@
 
 <script>
   import { createEventDispatcher, onDestroy } from 'svelte';
-  import { locale, getLocaleFromNavigator } from 'svelte-i18n';
+  import { locale } from 'svelte-i18n';
   import { link, replace } from 'svelte-spa-router';
   import { DropdownShell, Button, Dropdown } from 'attractions'
   import { User, DoorExit } from 'tabler-icons-svelte';
