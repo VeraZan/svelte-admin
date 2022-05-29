@@ -5,7 +5,17 @@ module.exports = {
   ],
   media: false,
   theme: {
-    extend: {}
+    extend: {
+      width: {
+        'fit': 'fit-content'
+      },
+      gridTemplateRows: {
+        'auto': 'auto auto',
+      },
+      gridTemplateCols: {
+        'auto': 'auto auto',
+      }
+    }
   },
   variants: {
     extend: {}
